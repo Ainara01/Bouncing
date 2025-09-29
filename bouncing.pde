@@ -1,11 +1,15 @@
-ArrayList<Square> squares = new ArrayList<Square>();
+int squaresIndex = 0;
+int numberOfSquares = 5;
 color backgroundColor;
 int maxSquareSize;
+Square[] squares = new Square[numberOfSquares];
 
 void setup() {
   size (600,600);
-  squares.add(new Square((int)random(50), (int)random(600), (int)random(600)));
   backgroundColor = color((int)random(256),(int)random(256),(int)random(256),(int)random(256));
+  for (int i = 0; i < numberOfSquares; i++) {
+    squares[i] = new Square((int)random(100),(int)random(600),(int)random(600));
+  }
 }
 void draw() {
   background(backgroundColor);
@@ -15,7 +19,8 @@ void draw() {
 }
 void mousePressed(){
   if (!squareInPoint(mouseX,mouseY)) {
-  squares.add(new Square((int)random(50),mouseX,mouseY));
+    squares[squaresIndex % numberOfSquares] = new Square((int)random(100),mouseX,mouseY);
+    squaresIndex++;
   }
 }
 
